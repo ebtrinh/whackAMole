@@ -6,17 +6,59 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css"/>
 </head>
-<body>
-  <h1 id="text1"></h1> 
-  <img src="./images/holedef.jpg" id="hole1" onclick="anyFunction('1')">
-  <img src="./images/holedef.jpg" id="hole2" onclick="anyFunction('2')">
-  <img src="./images/holedef.jpg" id="hole3" onclick="anyFunction('3')">
-  <img src="./images/holedef.jpg" id="hole4" onclick="anyFunction('4')">
+<body> 
+  <img src="./images/noah.png" id="hole1" onclick="anyFunction('1')" width="150" height="200">
+  <img src="./images/noah.png" id="hole2" onclick="anyFunction('2')" width="150" height="200">
+  <img src="./images/noah.png" id="hole3" onclick="anyFunction('3')" width="150" height="200">
+  <img src="./images/noah.png" id="hole4" onclick="anyFunction('4')" width="150" height="200">
+  <h2 id="noahKilled"></h2>
   <script>
-    function anyFunction(hole){
-      document.getElementById('text1').textContent = "hi"  
-      document.getElementById('hole'+ hole).src = "./images/helldivers.jpg"
-      console.log("hi")
+    let noahs = 0
+    let holeImgs = {
+      img1:"noah",
+      img2:"noah",
+      img3:"noah",
+      img4:"noah"
+    }
+    let holeDels = {
+      hole1Del : 0,
+      hole2Del : 0,
+      hole3Del : 0,
+      hole4Del : 0  
+    }
+    
+    let timer = 0
+    function anyFunction(hole){  
+      if (holeImgs["img"+hole] != "def")
+      {
+        let cur = document.getElementById('hole'+ hole)
+        cur.src = "./images/holedef.jpg"
+        holeImgs["img"+hole] = "def"
+        noahs++
+        document.getElementById('noahKilled').textContent = 'terrorist attacks prevented: ' + noahs
+        
+          holeDels["hole"+hole+"Del"] = (getRandomInt(6)+1)
+        
+      }
+    }
+    var run = setInterval(onframe,1000)
+
+    function onframe(){
+      
+      for (let i=0;i<5;i++){
+        
+        holeDels["hole"+i.toString()+"Del"]=holeDels["hole"+i.toString()+"Del"]-1
+        if (holeDels["hole"+i.toString()+"Del"] <= 0 && holeImgs["img1"] == "def"){
+          document.getElementById("hole"+i.toString()).src = "./images/noah.png" 
+          console.log(document.getElementById("hole"+i.toString()))
+          holeImgs["img"+i.toString()] = "noah"
+        }
+      
+    }
+      
+    }  
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
     }
   </script>
 </body>
