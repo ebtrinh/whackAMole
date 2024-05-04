@@ -48,7 +48,7 @@
       for (let i=0;i<5;i++){
         
         holeDels["hole"+i.toString()+"Del"]=holeDels["hole"+i.toString()+"Del"]-1
-        if (holeDels["hole"+i.toString()+"Del"] <= 0 && holeImgs["img1"] == "def"){
+        if (holeDels["hole"+i.toString()+"Del"] <= 0 && holeImgs["img"+i.toString()] == "def"){
           document.getElementById("hole"+i.toString()).src = "./images/noah.png" 
           console.log(document.getElementById("hole"+i.toString()))
           holeImgs["img"+i.toString()] = "noah"
